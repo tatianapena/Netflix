@@ -1,28 +1,29 @@
 import { ScrollView, Image, Text, StyleSheet, View } from "react-native";
-import { fetchShowById, Show, Episode } from "../lib/api";
+import { fetchShowById, Episode } from "../lib/api";
 import { useLocalSearchParams } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 
 export default function DetailsScreen() {
-  const { show: showParam } = useLocalSearchParams();
-  const show = showParam ? (JSON.parse(showParam as string) as Show) : null;
+  const { id } = useLocalSearchParams();
+  const showId = Number(id);
 
   const { data: info } = useQuery({
-    queryKey: ["show-detail", show?.id],
-    queryFn: () => fetchShowById(show?.id as number),
+    queryKey: ["show-detail", showId],
+    queryFn: () => fetchShowById(showId),
+    enabled: !!showId,
   });
 
   return (
     <ScrollView style={{ backgroundColor: "#121212" }}>
-      {show && (
+      {info && (
         <View>
           <Image
-            source={{ uri: show.poster_url }}
+            source={{ uri: info?.poster_url }}
             style={{ width: "100%", height: 300 }}
           />
           <View style={styles.container}>
-            <Text style={styles.title}>{show.title}</Text>
-            <Text style={styles.synopsis}>{show.synopsis}</Text>
+            <Text style={styles.title}>{info.title}</Text>
+            <Text style={styles.synopsis}>{info.synopsis}</Text>
           </View>
         </View>
       )}

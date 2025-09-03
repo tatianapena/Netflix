@@ -9,19 +9,19 @@ import {
 } from "react-native";
 import Layout from "../components/Layout";
 import { useQuery } from "@tanstack/react-query";
-import { fetchShows, Show } from "../lib/api";
+import { fetchShowsGroupedByCategory } from "../lib/api";
 import { router } from "expo-router";
 
 export default function HomeScreen() {
-  const { data: shows } = useQuery({
-    queryKey: ["shows"],
-    queryFn: () => fetchShows(),
+  const { data: categories } = useQuery({
+    queryKey: ["shows-grouped-by-category"],
+    queryFn: () => fetchShowsGroupedByCategory(),
   });
 
   return (
     <Layout>
       <FlatList
-        data={shows ?? []}
+        data={categories ?? []}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listContainer}
         ItemSeparatorComponent={() => <View style={{ height: 18 }} />}
@@ -39,7 +39,7 @@ export default function HomeScreen() {
                   onPress={() => {
                     router.push({
                       pathname: "/details",
-                      params: { show: JSON.stringify(show) },
+                      params: { id: show.id.toString() },
                     });
                   }}
                   style={styles.posterWrapper}
