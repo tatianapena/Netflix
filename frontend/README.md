@@ -1,50 +1,71 @@
-# Welcome to your Expo app 👋
+# 📺 Netflix-Style Catalog App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este es un proyecto de **React Native con Expo** que muestra un catálogo de series y películas con categorías y detalle de episodios.  
+La aplicación usa **Supabase** como backend y base de datos _(antes se usaba un backend en NestJS, pero fue reemplazado por Supabase)_.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Tecnologías principales
 
-   ```bash
-   npm install
-   ```
+- ⚛️ [Expo](https://expo.dev/) → Framework para el frontend móvil.
+- 🗄️ [Supabase](https://supabase.com/) → Base de datos y autenticación.
+- 🔄 [React Query](https://tanstack.com/query/latest) → Manejo de estado de servidor y caché.
+- 🧭 [Expo Router](https://expo.github.io/router/docs/) → Navegación basada en archivos.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 📂 Estructura del proyecto
 
-In the output, you'll find options to open the app in a
+- `app/` → Pantallas principales (`index.tsx`, `details.tsx`).
+- `components/` → Componentes reutilizables (`Layout.tsx`).
+- `hooks/` → Hooks personalizados (`useColorScheme`, `useThemeColor`).
+- `lib/` → Conexión a Supabase y funciones API.
+- `constants/` → Configuración de colores y estilos globales.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## ⚙️ Requisitos previos
 
-## Get a fresh project
+- 📌 Node.js (versión 18 o superior).
+- 📌 Una cuenta y proyecto en [Supabase](https://supabase.com/).
 
-When you're ready, run:
+Configura tus credenciales en `app.config.js`:
 
-```bash
-npm run reset-project
+```js
+export default {
+  expo: {
+    extra: {
+      SUPABASE_URL: "https://<your-project>.supabase.co",
+      SUPABASE_ANON_KEY: "<your-anon-key>"
+    }
+  }
+}
+
+---
+Cómo correr el proyecto:
+1. Instalar dependencias => npm install
+2. Iniciar la app => npx expo start
+
+---
+📱 Podrás abrir la app en:
+Android/iOS (emulador o dispositivo físico con Expo Go).
+💻 Web.
+
+---
+🗄️ Modelo de datos en Supabase
+categories → Drama, Comedia, Sci-Fi, etc.
+shows → Cada show con su título, sinopsis, poster y categoría.
+episodes → Lista de episodios vinculados a cada show.
+
+---
+🎯 Próximos pasos
+🔍 Agregar buscador de shows.
+⭐ Implementar sistema de favoritos por usuario.
+🔐 Añadir autenticación con Supabase Auth.
+
+---
+👩‍💻 Autor
+✍️ Hecho por Tatiana Peña
+💻 GitHub: @tatianapena
+🔗 LinkedIn: tatianapenam
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
